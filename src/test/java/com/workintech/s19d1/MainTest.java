@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -233,7 +232,7 @@ class MainTest {
         when(mockMovieRepository.findById(anyLong())).thenReturn(Optional.empty());
         assertThatThrownBy(() -> movieService.findById(2L))
                 .isInstanceOf(ApiException.class)
-                .hasMessageContaining("Movie is not found with id: 2")
+                .hasMessageContaining("movie is not found with given id: 2")
                 .matches(exception -> ((ApiException) exception).getHttpStatus() == HttpStatus.NOT_FOUND);
     }
 
